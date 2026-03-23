@@ -69,6 +69,7 @@ int main(){
 
     UNITY_BEGIN();
     RUN_TEST(testTrueCases);
+    RUN_TEST(testFalseCases);
     UNITY_END();
 
     return 0;

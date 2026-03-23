@@ -2,8 +2,8 @@
 
 #include<vector>
 
-enum class DTMFCode {
-    ZERO = 10,
+enum class DTMFCode : int { // These codes swap Zero and D for simplicity
+    ZERO = 0,
     ONE = 1,
     TWO = 2,
     THREE = 3,
@@ -18,18 +18,20 @@ enum class DTMFCode {
     A = 13,
     B = 14,
     C = 15, 
-    D = 0
+    D = 10
 
 };
 
 class DTMFController {
     public:
 
-    DTMFController(int pin1, int pin2, int pin3, int pin4, int data, int _input);
+    DTMFController(int pin1, int pin2, int pin3, int pin4, int data, int input);
     
-    void update();
+    int update();
     void disableInput();
     void enableInput();
+    int read();
+    std::vector<int> readSequence();
 
     private:
 
@@ -39,5 +41,13 @@ class DTMFController {
     int _pin4;
     int _data;
     int _input;
-    
+
+    int _inputState;
+    int _prevByte;
+    int _newData;
+    int _prevData;
+
+    int _recSequence;
+    int _compSequence;
+    std::vector<int> _sequence;
 };
